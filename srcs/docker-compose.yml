@@ -69,13 +69,13 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/mohazerr/data/mariadb'
+      device: '/home/mgamil/data/mariadb'
   wordpress:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/mohazerr/data/wordpress'
+      device: '/home/mgamil/data/wordpress'
 
 networks:
   inception:

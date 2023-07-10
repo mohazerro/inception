@@ -1,23 +1,23 @@
-all: 
-	mkdir -p /home/mgamil/data/mariadb
-	mkdir -p /home/mgamil/data/wordpress
-	docker compose -f ./srcs/docker-compose.yml build
-	docker compose -f ./srcs/docker-compose.yml up -d
-
-logs:
-	docker logs wordpress
-	docker logs mariadb
-	docker logs nginx
-
+all:
+	docker compose up -d
 clean:
-	docker container stop nginx mariadb wordpress
-	docker network rm inception
-
+	docker compose down
+networks:
+	docker network ls
+volumes:
+	docker volume ls
 fclean: clean
-#	@sudo rm -rf /home/mgamil/data/mariadb/*
-#	@sudo rm -rf /home/mgamil/data/wordpress/*
-	@docker system prune -af
+	bash -c "docker image prune --force; docker image \
+	rm nginx:v1 wordpress:v1 mariadb:v1"
 
 re: fclean all
 
-.Phony: all logs clean fclean
+del_volumes:
+	sudo rm -rf /home/mgamil/data/wordpress/*
+	sudo rm -rf /home/mgamil/data/mariadb/*
+	bash -c "docker volume rm inception_mariadb inception_wordpress"
+
+images:
+	bash -c "docker images"
+logs:
+	bash -c "docker compose logs"

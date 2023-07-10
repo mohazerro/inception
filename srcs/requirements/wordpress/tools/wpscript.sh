@@ -4,6 +4,7 @@
 cd /var/www/html/wordpress
 
 if ! wp core is-installed; then
+echo lollllllllllllllllllllllllllllllllll
 wp config create	--allow-root --dbname=${SQL_DATABASE} \
 			--dbuser=${SQL_USER} \
 			--dbpass=${SQL_PASSWORD} \
@@ -22,6 +23,7 @@ wp user create		--allow-root \
 			--role=author \
 			--user_pass=${USER1_PASS} ;
 
+echo samerelaputain
 wp cache flush --allow-root
 
 # it provides an easy-to-use interface for creating custom contact forms and managing submissions, as well as supporting various anti-spam techniques
